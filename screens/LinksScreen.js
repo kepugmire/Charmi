@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, ListView } from 'react-native';
+import { ScrollView, StyleSheet, ListView, View, Text, TouchableOpacity } from 'react-native';
 import { List, ListItem } from 'react-native-elements'
 
 
@@ -46,25 +46,78 @@ renderRow (rowData, sectionID) {
 }
   render() {
     return (
-      <ScrollView style={styles.container}>
- <List>
-      <ListView
-        renderRow={this.renderRow}
-        dataSource={this.state.dataSource}
-      />
-    </List>
-     
-        
+      <View>
+        <ScrollView 
+        contentContainerStyle={styles.listMatches}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        scrollEnabled={true}
+        >
+          <Avatar
+              style={styles.imgs}
+              large
+              rounded
+              source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.7}
+            />
+            <Avatar 
+            style={styles.imgs}
+              large
+              rounded
+              source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.7}
+            />
+            <Avatar
+            style={styles.imgs}
+              large
+              rounded
+              source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg"}}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.7}
+            />
+        </ScrollView>
 
+
+        <Text style={styles.textBox} >
+          Conversations
+        </Text>
+
+
+      <ScrollView style={styles.container}>
+        <List style={{flex: 1}}>
+          <TouchableOpacity>
+          <ListView
+            renderRow={this.renderRow}
+            dataSource={this.state.dataSource}
+          />
+          </TouchableOpacity>
+        </List>
       </ScrollView>
+
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
   },
+  listMatches: {
+    height: 90,
+    minWidth: 375,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  imgs: {
+    marginLeft: 50,
+    marginRight: 50
+  },
+  textBox: {
+    padding: 10,
+    alignSelf: 'center'
+  }
+
 });
